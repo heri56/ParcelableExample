@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ParcelableExample</string>
+    <string name="action_settings">Setting</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="str_hnt_sname">Student Name</string>
+    <string name="str_hnt_sddress">Student Address</string>
+    <string name="str_hnt_course">Student Course</string>
+    <string name="str_hnt_sage">Student Age</string>
+    <string name="str_btn_ok">OK</string>
+</resources>
