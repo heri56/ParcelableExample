@@ -1,11 +1,14 @@
 package com.heri.parcelableexample;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     EditText mEtSAddress;
     EditText mEtSCourse;
     Button mBtnOk;
+    String tag = "Error";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +32,32 @@ public class MainActivity extends AppCompatActivity {
         mBtnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Student student = new Student(mEtSName.getText().toString(), Integer.parseInt(mEtSAge.getText().toString()),mEtSAddress.getText().toString(),mEtSCourse.getText().toString());
+                if ((mEtSName.getText().toString().equals(" ")) || mEtSAge.getText().toString().isEmpty()
+                        ||mEtSAddress.getText().toString().equals(" ")||mEtSCourse.getText().toString().equals(" ") ){
+                    Toast.makeText(getApplication(), "Data Kosong", Toast.LENGTH_SHORT).show();
+                }else {
+                    Student student = new Student(mEtSName.getText().toString(), Integer.parseInt(mEtSAge.getText().toString()),
+                            mEtSAddress.getText().toString(), mEtSCourse.getText().toString());
+                    Intent i = new Intent(getBaseContext(), StudentViewActivity.class);
+                    i.putExtra("student", student);
+                    startActivity(i);
+                }
 
-                Intent i = new Intent(getBaseContext(), StudentViewActivity.class);
+//                try {
+//                    if ("".equals(mEtSName)) {df
+//
+//                        Toast.makeText(getApplication(), "Kosong", Toast.LENGTH_SHORT).show();
+//                    }
+//                }catch (Resources.NotFoundException e){
+//                    Log.i(tag, "Info");
+//                }
 
-                i.putExtra("student", student);
-                startActivity(i);
+//                String mesaname = mEtSName.getText().toString();
+//                if (student.equals(mEtSName.getText().toString().isEmpty())){
+//                    Toast.makeText(getApplication(), "Kosong", Toast.LENGTH_SHORT).show();
+//
+////
+
             }
         });
 
